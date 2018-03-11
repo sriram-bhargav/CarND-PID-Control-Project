@@ -7,7 +7,7 @@ Self-Driving Car Engineer Nanodegree Program
 
 In this project, we have implemented basic PID control algorithm to keep the vehicle on road so that no tire leaves the drivable portion of the track surface. PID control sets the steering angle in proportion to "crosstrack error" (CTE). CTE is the lateral distance between the vehicle and reference trajectory. 
 
-steering_angle = Kp*p_error + Ki*i_error + Kd*d_error
+steering_angle = Kp * p_error + Ki * i_error + Kd * d_error
 
 Kp - is "P" in the PID, helps steer in proportion to the CTE.
 Ki - is "I" in the PID, counters the systematic bias from misaligned wheels.
