@@ -3,6 +3,39 @@ Self-Driving Car Engineer Nanodegree Program
 
 ---
 
+## Rubric Points
+
+In this project, we have implemented basic PID control algorithm to keep the vehicle on road so that no tire leaves the drivable portion of the track surface. PID control sets the steering angle in proportion to "crosstrack error" (CTE). CTE is the lateral distance between the vehicle and reference trajectory. 
+
+steering_angle = Kp*p_error + Ki*i_error + Kd*d_error
+
+Kp - is "P" in the PID, helps steer in proportion to the CTE.
+Ki - is "I" in the PID, counters the systematic bias from misaligned wheels.
+Kd - is "D" in the PID, reduces overshooting of the car when CTE were reduced.
+
+### Tuning PID parameters
+
+Algorithm to tune PID parameters is loosely based on Twiddle algorithm.
+
+Initially Kp, Ki and Kd are set to zero - which means steering angle is not modified by the algorithm - so the vehicle ends up going straight - after couple seconds leaving driveable portion of track surface (CTE linearly increasing). Video: https://youtu.be/neNhDzz1ZDU 
+
+High Kp means - vechicle is going to drift left and right (like a snake). For example: with (Kp, Ki, Kd) = (1, 0, 0) - https://youtu.be/EG7GdQ38LQI
+
+So, I started with low Kp (~0.1), which allowed vehicle to go farther than the above setting with less drift: (Kp, Ki, Kd) = (0.1, 0, 0) - https://youtu.be/tuZRmIthdmg
+
+Here's where Kd parameter becomes useful, it reduces vehicle's overshoot when CTE is reduced. You need Kd to be larger (in maginitude) than Kp for overshoot reduction. I set it initially to 10. (Kp, Ki, Kd) = (0.1, 0, 10) - https://youtu.be/40aoUMka1xA
+Surprisingly - the vehicle is able to steer itself without overshooting and lot of drifting.
+
+Setting Ki parameter has little to no effect, which means there is very little bias from misalighned wheels. (Kp, Ki, Kd) = (0.1, 0.01, 10) - https://youtu.be/mIzNJRHjrto
+
+These are the final parameters after fine tuning (tweak a parameter by keep other two parameters constant ~ Twiddle):
+Kp = 0.12
+Ki = 0.00001
+Kd = 7
+Here's the video with those fine tuned parameters (throttle=0.3): https://youtu.be/BzY11XKIyYI 
+
+---
+
 ## Dependencies
 
 * cmake >= 3.5
