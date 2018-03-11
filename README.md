@@ -29,9 +29,7 @@ Surprisingly - the vehicle is able to steer itself without overshooting and lot 
 Setting Ki parameter has little to no effect, which means there is very little bias from misalighned wheels. (Kp, Ki, Kd) = (0.1, 0.01, 10) - https://youtu.be/mIzNJRHjrto
 
 These are the final parameters after fine tuning (tweak a parameter by keep other two parameters constant ~ Twiddle):
-Kp = 0.12
-Ki = 0.00001
-Kd = 7
+(Kp, Ki, Kd) = (0.12, 0.00001, 7)
 Here's the video with those fine tuned parameters (throttle=0.3): https://youtu.be/BzY11XKIyYI 
 
 ---
